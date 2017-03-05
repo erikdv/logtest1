@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <property resource="application.properties" />
+  <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+     <!--   <destination>acc-2.edia.nl:5048</destination> -->
+     <destination>${logstash_endpoint}</destination>
+
+      <!-- encoder is required -->
+      <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+  </appender>
+  
+   <include resource="org/springframework/boot/logging/logback/base.xml"/>
+   <logger name="org.springframework.web" level="DEBUG"/>
+
+  <root level="INFO">
+      <appender-ref ref="logstash" />
+  </root>
+</configuration>
